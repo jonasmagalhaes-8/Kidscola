@@ -1,0 +1,57 @@
+CREATE TABLE [Aluno](
+  [n_matricula] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+  [aluno_nome] VARCHAR(100) NOT NULL, 
+  [aluno_nascimento] DATE NOT NULL, 
+  [mae_nome] VARCHAR(100) NOT NULL, 
+  [pai_nome] VARCHAR(100), 
+  [cpf_mae] VARCHAR(12) NOT NULL, 
+  [rg_mae] VARCHAR(12) NOT NULL, 
+  [cpf_pai] VARCHAR(12), 
+  [rg_pai] VARCHAR(12), 
+  [cep_aluno] VARCHAR(9) NOT NULL, 
+  [rua_aluno] VARCHAR(50) NOT NULL, 
+  [bairro_aluno] VARCHAR(50) NOT NULL, 
+  [cidade_aluno] VARCHAR(50) NOT NULL, 
+  [telefone1_aluno] VARCHAR(12), 
+  [telefone2_aluno] VARCHAR(12), 
+  [telefone1_pai] VARCHAR(12), 
+  [telefone2_pai] VARCHAR(12), 
+  [telefone1_mae] VARCHAR(12) NOT NULL, 
+  [telefone2_mae] VARCHAR(12), 
+  [telefone_emergencial] VARCHAR(12));
+
+CREATE TABLE [Professor](
+  [id_professor] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+  [nome_professor] VARCHAR(100) NOT NULL, 
+  [nascimento_professor] DATE NOT NULL, 
+  [telefone1_professor] VARCHAR(12) NOT NULL UNIQUE, 
+  [telefone2_professor] VARCHAR(12), 
+  [email_professor] VARCHAR(100) NOT NULL UNIQUE, 
+  [cpf_professor] VARCHAR(12) NOT NULL UNIQUE, 
+  [rg_professor] VARCHAR(12) NOT NULL UNIQUE, 
+  [cep_professor] VARCHAR(11) NOT NULL, 
+  [rua_professor] VARCHAR(50) NOT NULL, 
+  [bairro_professor] VARCHAR(50) NOT NULL, 
+  [cidade_professor] VARCHAR(50) NOT NULL);
+
+CREATE TABLE [Professor_Materia](
+  [id_professor] INTEGER NOT NULL REFERENCES [Professor]([id_professor]) ON DELETE CASCADE, 
+  [materia] VARCHAR(20) NOT NULL);
+
+CREATE TABLE [Turma](
+  [id_turma] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+  [nome_turma] VARCHAR(50) NOT NULL, 
+  [serie_turma] VARCHAR(30) NOT NULL, 
+  [ano_turma] INTEGER NOT NULL, 
+  [turno_turma] VARCHAR(50) NOT NULL);
+
+CREATE TABLE [Turma_Alunos](
+  [id_turma] INTEGER NOT NULL REFERENCES [Turma]([id_turma]) ON DELETE CASCADE, 
+  [n_matricula] INTEGER NOT NULL REFERENCES [Aluno]([n_matricula]) ON DELETE CASCADE);
+
+CREATE TABLE [Turma_Disciplinas](
+  [id_turma] INTEGER NOT NULL REFERENCES [Turma]([id_turma]) ON DELETE CASCADE, 
+  [materia] VARCHAR(20) NOT NULL, 
+  [id_professor] INTEGER REFERENCES [Professor]([id_professor]) ON DELETE CASCADE, 
+  PRIMARY KEY([id_turma], [materia], [id_professor]));
+

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl" uri="xml-resources/web-service-references/AtendeCliente/wsdl/apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente.wsdl"/>
+    <system systemId="http://webservice.correios.com.br/service/rastro/Rastro.wsdl" uri="xml-resources/web-service-references/Rastro/wsdl/webservice.correios.com.br/service/rastro/Rastro.wsdl"/>
+    <system systemId="http://webservice.correios.com.br/service/rastro/Rastro_schema1.xsd" uri="xml-resources/web-service-references/Rastro/wsdl/webservice.correios.com.br/service/rastro/Rastro_schema1.xsd"/>
+</catalog>
